@@ -1,0 +1,191 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Alata&family=Julius+Sans+One&family=Lexend+Deca&family=Mallanna&family=Meera+Inimai&family=NTR&family=Quicksand:wght@500;600;700&family=Roboto&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Fugaz+One&family=Rammetto+One&family=Shrikhand&display=swap');
+
+@font-face {
+    font-family: "Agies Fresh";
+    src: url(../Font/AgiesFresh.ttf);
+}
+
+body {
+    background-color: #311b4b;
+    font-family: 'Quicksand', sans-serif;
+    color: bisque;
+}
+
+.profileInfo {
+    padding-top: 30px;
+    justify-content: center;
+    color: bisque;
+}
+
+.profileImg {
+    width: 180px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+:root {
+    --shadow-color: #FF9E9E;
+    --shadow-color-light: bisque;
+}
+
+.logo {
+    max-width: 100%;
+    height: auto;
+    font-family: 'Agies Fresh';
+    font-size: 120px;
+    color: white;
+    text-decoration: none;
+    transition: .5s;
+    animation: neon 3s infinite;
+    transform: rotate(-10deg);
+    margin-top: 40px;
+}
+
+@keyframes neon {
+    0% {
+        text-shadow: -1px -1px 1px var(--shadow-color-light), -1px 1px 1px var(--shadow-color-light), 1px -1px 1px var(--shadow-color-light), 1px 1px 1px var(--shadow-color-light), 0 0 3px var(--shadow-color-light), 0 0 10px var(--shadow-color-light), 0 0 20px var(--shadow-color-light), 0 0 30px var(--shadow-color), 0 0 40px var(--shadow-color), 0 0 50px var(--shadow-color), 0 0 70px var(--shadow-color), 0 0 100px var(--shadow-color), 0 0 200px var(--shadow-color);
+    }
+
+    50% {
+        text-shadow: -1px -1px 1px var(--shadow-color-light), -1px 1px 1px var(--shadow-color-light), 1px -1px 1px var(--shadow-color-light), 1px 1px 1px var(--shadow-color-light), 0 0 5px var(--shadow-color-light), 0 0 15px var(--shadow-color-light), 0 0 25px var(--shadow-color-light), 0 0 40px var(--shadow-color), 0 0 50px var(--shadow-color), 0 0 60px var(--shadow-color), 0 0 80px var(--shadow-color), 0 0 110px var(--shadow-color), 0 0 210px var(--shadow-color);
+    }
+
+    100% {
+        text-shadow: -1px -1px 1px var(--shadow-color-light), -1px 1px 1px var(--shadow-color-light), 1px -1px 1px var(--shadow-color-light), 1px 1px 1px var(--shadow-color-light), 0 0 3px var(--shadow-color-light), 0 0 10px var(--shadow-color-light), 0 0 20px var(--shadow-color-light), 0 0 30px var(--shadow-color), 0 0 40px var(--shadow-color), 0 0 50px var(--shadow-color), 0 0 70px var(--shadow-color), 0 0 100px var(--shadow-color), 0 0 200px var(--shadow-color);
+    }
+}
+
+a {
+    text-decoration: none;
+    transition: .5s;
+}
+
+    a:hover {
+        text-decoration: none;
+        color: #FFF38F;
+    }
+
+.main {
+    margin-left: 225px; /* Same as the width of the sidebar */
+    /*padding: 0px 10px;*/
+    /*background-color: blue;*/
+    overflow: hidden;
+    /*width: 88%;*/
+    background-color: transparent;
+}
+
+.leftside {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 225px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding: 10px;
+    background-color: transparent;
+    color: #DBC41D;
+}
+
+.centerBody {
+    margin-left: 225px; /* Same as the width of the sidebar */
+    padding: 20px;
+    /*background-color: #3078DB;*/
+    overflow: hidden;
+    /*width: 88%;*/
+    /*height: 80%;*/
+    background-color: transparent;
+}
+
+
+.view_content {
+    max-width: auto;
+    overflow: hidden;
+}
+.center {
+    float: left;
+    max-width: 80%;
+    height: auto;
+    padding-left: 45px;
+
+    /*text-align: center;*/
+}
+
+.rightside {
+    width: 220px; /* Set the width of the sidebar */
+    float: right;   
+    padding: 10px;
+    height: 800px;
+}
+
+.rightsideTop {
+    /*width: 220px;*/ /* Set the width of the sidebar */
+    float: right;
+    padding: 20px;
+    text-align: center;
+    height: 200px;
+}
+
+.center-table {
+    text-align: center;
+}
+
+.frontBtns{
+    position: absolute;
+    margin-bottom: 10%;
+}
+
+.messageArea{
+    background-color: white;
+}
+
+.mainImg {
+    max-width: 700px;
+    max-height: 350px;
+    object-fit: none;
+}
+
+
+
+.index_content {
+    /*max-width: 1000px;*/
+    /*overflow: hidden;*/
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    justify-content: center;
+}
+
+.presentation {/*
+    float:left;*/
+    width: 70%;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 10px;
+    /*text-align: right;*/
+    /*border-left: 5px;*/
+}
+
+.carousel {
+    /*float: left;*/
+    width: 80%;
+}
+
+.three-dots {
+    text-align: center;
+}
+
+    .three-dots span {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: red;
+        display: inline-block;
+        margin: 0 5px;
+    }

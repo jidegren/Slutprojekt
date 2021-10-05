@@ -1,0 +1,11 @@
+﻿
+.gameTable_item {
+    margin-top: 20px;
+    width: 200px;
+    min-height: 230px;
+    padding: 20px 10px;
+    background-position: left;
+    background: rgb(38,36,42);
+    background-size: 150%;
+    border: 1px solid #004d4d;
+}

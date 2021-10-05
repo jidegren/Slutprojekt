@@ -1,0 +1,72 @@
+﻿@model CreateAWVM
+<div class="view_content">
+
+    <div class="center">
+        <h3>Starta AW-session</h3>
+        <hr />
+        <form id="emailFrm" asp-controller="AfterWork" asp-action="CreateAW">
+            <div class="mb-3">
+                <label asp-for="AWName" class="form-label"></label>
+                <input asp-for="AWName" class="form-control" />
+                <span asp-validation-for="AWName"></span>
+            </div>
+            @*<div class="mb-3">
+
+                    <label asp-for="GuestEmails" class="form-label"></label>
+                    <textarea rows="4" cols="50" name="emails" asp-for="GuestEmails" class="form-control"></textarea>
+                    <span asp-validation-for="GuestEmails"></span>
+                </div>*@
+            @*<a class="btn btn-sm animated-button thar-one" asp-controller="AfterWork" asp-action="">Skapa AW</a>*@
+            <input class="input-as-button" type="submit" name="submit" value="Skapa AW" />
+        </form>
+        <div asp-validation-summary="All"></div>
+
+        @*<form method="post" id="emailFrm">
+                <input type="text" name="emails" />
+                <input type="submit" name="submit" value="submit">
+            </form>*@
+    </div>
+
+    <div class="rightside">
+        @await Component.InvokeAsync("HighScore")
+    </div>
+</div>
+
+
+    @section scripts {
+        @*<script>
+                $(document).ready(function () {
+                    jQuery.validator.addMethod("multiemail", function (value, element) {
+                        if (this.optional(element)) {
+                            return true;
+                        }
+                        var emails = value.split(','),
+                            valid = true;
+                        for (var i = 0, limit = emails.length; i < limit; i++) {
+                            value = emails[i];
+                            valid = valid && jQuery.validator.methods.email.call(this, value, element);
+                        }
+                        return valid;
+                    }, "Please separate email addresses with a comma and do not use spaces.");
+
+
+                    $("#emailFrm").validate({
+                        errorElement: 'div',
+                        rules: {
+                            emails: {
+                                required: true,
+                                multiemail: true
+                            }
+                        },
+                        messages:
+                        {
+                            emails: {
+                                required: "Please enter email address."
+                            }
+                        }
+                    });
+                });
+            </script>*@
+    }
+
+    @*TODO Uppdatera form*@

@@ -1,0 +1,47 @@
+﻿@model EditUserInfoVM
+
+    <div class="view_content">
+
+
+        <div class="center">
+            <h3>Redigera profil</h3>
+            <hr />
+            <form enctype="multipart/form-data" asp-controller="AfterWork" asp-action="Edit">
+                <div class="mb-3">
+
+                    <label asp-for="UserName" class="form-label"></label>
+                    <input asp-for="UserName" class="form-control" readonly />
+                    <span asp-validation-for="UserName"></span>
+                </div>
+                <div class="mb-3">
+
+                    <label asp-for="MailAddress" class="form-label"></label>
+                    <input asp-for="MailAddress" class="form-control" />
+                    <span asp-validation-for="MailAddress"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ProfileImgPath" class="form-label"></label>
+                    <input asp-for="ProfileImgPath" class="form-control" />
+                    <span asp-validation-for="ProfileImgPath"></span>
+                </div>
+                @*<div class="mb-3">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="PasswordRepeat" class="form-label"></label>
+                    <input asp-for="PasswordRepeat" class="form-control" />
+                    <span asp-validation-for="PasswordRepeat"></span>
+                </div>*@
+                <input class="input-as-button" type="submit" value="Spara" />
+            </form>
+            <div asp-validation-summary="All"></div>
+
+
+        </div>
+        <div class="rightside">
+            @await Component.InvokeAsync("HighScore")
+        </div>
+
+    </div>

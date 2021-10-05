@@ -1,0 +1,189 @@
+﻿@model DigiKaljaVM
+
+
+<div class="view_content">
+
+    <div class="center flex-grow">
+        @*Kort info om spel samt iögonfallande visa ord-knapp*@
+
+        <h3>Digikalja</h3>
+        <hr />
+        <div class="presentation">
+            <div id="DigiKaljaInfo">
+
+                <p>Dags att spela DigiKalja! Ladda upp med dina mest trovärdiga defintioner för ovanliga ord och leverera dem med briljans!</p>
+                <p><b>Klicka på knappen för att se ordet.</b></p>
+            </div>
+
+
+
+            <button class="input-as-button" id="btn-show-modal">Visa ord</button>
+        </div>
+        <!-- Trigger/Open The Modal -->
+
+        <div style="display:none" id="div-waiting">
+            <h6 class="ml16">Alla är inte lika kvicktänkta som du...</h6>
+        </div>
+        <div style="display:none;" id="modalShowAllDescriptions" class="divShowAllDescriptions">
+            <div>
+                <h6>BOMSHAKALAK!</h6>
+                <h6>Här visas alla spelares beskrivningar, inklusive den rätta:</h6>
+                <h2 id="theWord"></h2><br />
+                <div id="div-card-container" class="row">
+                </div>
+
+
+                <button id="btn-send-guess" type="submit" class="input-as-button">Skicka gissning</button>
+            </div>
+
+
+        </div>
+        @*Här vill vi lägga upp rätt svar*@
+
+        <div style="display:none;" id="modal-show-result">
+
+            <div>
+                <div>
+                    <h6>Resultatet av denna omgång</h6>
+                </div>
+                <div>
+                    @*<form asp-controller="AfterWork" asp-action="digikalja" method="post">
+                    *@
+                    <div id="div-show-result">
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Spelare</th>
+                                        <th scope="col">Beskrivning</th>
+                                        <th scope="col">Röster</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultTable">
+                                    @*CreateElements in JS SignalR*@
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <div>
+                <button id="btn-new-round" type="submit" class="input-as-button">Ny spelomgång</button> 
+                <br />
+                <button id="btn-quit-game" type="submit" class="input-as-button">Avsluta spel</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="rightside">
+
+        @await Component.InvokeAsync("ScoreTable", Model.Code)
+
+        <div class="rightsideChat">
+            <h3>Chat</h3>
+            <div class="chat rounded">
+                <ul id="messagesList"></ul>
+            </div>
+            <div style="margin-top:10px;">
+                <input type="text" id="messageInput" size="40" />
+            </div>
+            <div style="margin-top:10px;">
+                <input class="input-as-button" type="submit" id="sendButton" value="Send" />
+            </div>
+        </div>
+    </div>
+
+
+
+    @*<div id="tableUserTotalScore">
+        <h6 class="table-heading">Speldeltagarnas totala Smutt-score</h6>
+
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">UserName</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+                <tbody id="userTable">
+                    @if (Model.Players != null)
+                    {
+                        foreach (var item in Model.Players)
+                        {
+                            <tr>
+                                <td>@item.UserName</td>
+                                <td>@item.Score</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>*@
+</div>
+
+    @*</div>*@
+
+<!-- The Modal -->
+<div class="modal" tabindex="-1" id="modalDescribeWord">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Skriv definition</h5>
+            </div>
+            <div class="modal-body">
+                <p>Skriv en definition för det här ordet:</p>
+                <h2 id="word-to-describe">@Model.Desc.TheWord</h2>
+                <p style="display: none" id="description">@Model.Desc.WordDescription</p>
+                <label for="message-text" class="col-form-label"></label>
+                <textarea class="form-control" id="description-text"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-dark btn-modal" id="btn-description-done" data-bs-dismiss="modal">Skicka</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        document.getElementById("messageInput")                    // to get the text box
+            .addEventListener("keyup", function (evt) {          // Keyup -> Any key pressed
+                if (evt.keyCode == 13) {                          // 13 for enter
+                    document.getElementById("sendButton").click();
+                }
+            });
+    </script>
+    <script src="~/js/digikalja.js"></script>
+
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            initConnection();
+
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script>
+    var textWrapper = document.querySelector('.ml16');
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    anime.timeline({ loop: true })
+        .add({
+            targets: '.ml16 .letter',
+            translateY: [-100, 0],
+            easing: "easeOutExpo",
+            duration: 1400,
+            delay: (el, i) => 30 * i
+        }).add({
+            targets: '.ml16',
+            opacity: 0,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000
+        });
+</script>
+}

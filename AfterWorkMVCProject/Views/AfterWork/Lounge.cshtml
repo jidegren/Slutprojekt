@@ -1,0 +1,135 @@
+﻿@model LoungeVM
+
+
+@section css {
+    <link rel="stylesheet" href="~/css/lounge_hack.css" />
+
+}
+@*<input type="hidden" id="userInput" value="@Model.UserName" />*@
+
+<div class="view_content">
+    <div class="center flex-grow">
+            <h3>@Model.AWName</h3>
+        <hr />
+        <div class="presentation">
+            <p>AW-kod: <strong id="awCode">@Model.Code</strong></p>
+            <p>Välkommen till loungen. Här kan du chatta med de andra deltagarna i väntan på att alla ansluter.</p>
+        </div>
+        <hr />
+
+        <div class="">
+            <h3>Chat</h3>
+            <div class="chat rounded">
+                <ul id="messagesList"></ul>
+            </div>
+            <div style="margin-top:10px;">
+                <input type="text" id="messageInput" size="40" />
+            </div>
+            <div style="margin-top:10px;">
+                <input class="input-as-button" type="submit" id="sendButton" value="Send" />
+            </div>
+        </div>
+    </div>
+
+    <div class="gameTable">
+        <div id="present-games">
+            <h3>Välj spel</h3>
+            @foreach (var item in Model.Games)
+            {
+                <div class="gameTable_item" style="background-image: linear-gradient(180deg, rgba(38,36,42,0.9360119047619048) 0%, rgba(38,36,42,0.5690651260504201) 52%, rgba(38,36,42,0.20211834733893552) 100%), url(../@item.ImgUrl);">
+
+                    <h5>
+                        @item.Name
+                    </h5>
+                    <p>@item.Description</p>
+                    <form asp-controller="AfterWork" asp-action="Lounge"><input type="submit" class="btn btn-dark frontBtns" id="startDigiKalja" value="Starta spel" /></form>
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+    <div class="rightside">
+        <table class="table center-table">
+            <h4 class="center-table">AW-Deltagare</h4>
+            <thead>
+                <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Points</th>
+                </tr>
+            </thead>
+            <tbody id="participant-table">
+                @if (Model.Players != null)
+                {
+                    @foreach (var user in Model.Players)
+                    {
+                        <tr>
+                            <td>@user.UserName</td>
+                            <td>@user.Score</td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Välkommen till @Model.AWName!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                
+            </div>
+            <div class="modal-body">
+                <p>Låt fler personer ansluta med hjälp av koden <strong>@Model.Code</strong>. Du kan också bjuda in dem med den här länken:</p>
+                <p><strong>http://smuttaw.azurewebsites.net/lounge/@Model.Code</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="myBtn" data-bs-dismiss="modal">OK</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+    <script src="~/js/chat.js"></script>
+    <script>
+        document.getElementById("messageInput")                    // to get the text box
+            .addEventListener("keyup", function (evt) {          // Keyup -> Any key pressed
+                if (evt.keyCode == 13) {                          // 13 for enter
+                    document.getElementById("sendButton").click();
+                }
+            });
+    </script>
+    @*TODO Ändra så att modalrutan kommer endast när man trycker på skapa aw-knappen och inte varje gång sidan laddas om*@
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            initConnection();
+            var code = document.getElementById("awCode").textContent;
+            if (window.localStorage.getItem(code) == null) {
+                window.localStorage.setItem(code, "falskt");
+                $('#myModal').modal("show");
+            }
+        });
+
+    </script>
+
+    <script>
+        var btn = document.getElementById("myBtn");
+
+        btn.onclick = function () {
+            $('#myModal').modal('hide');
+        };
+    </script>
+}

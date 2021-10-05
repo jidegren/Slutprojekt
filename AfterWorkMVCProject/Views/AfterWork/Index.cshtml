@@ -1,0 +1,186 @@
+﻿@model IndexVM[]
+
+@section css {
+    <link rel="stylesheet" href="/path/to/flickity.css" media="screen">
+}
+@*@{ViewBag.ShowHighScore = "Hello";}*@
+<section>
+    <div class="view_content">
+        <div class="center">
+            @*<img class="mainImg" src="~/Img/rappakalja.jpg" />*@
+
+
+            <div class="index_content">
+
+                    <h3>Välkommen till Smutt!</h3>
+                <hr />
+                <div class="presentation">
+                    <p>
+                        Bjud in dina vänner till en digital after work full av roliga spel. Du kan också ansluta till en existerande AW genom att klicka på länken ovan.
+                    </p>
+                </div>
+
+                <!--<div class="main_buttons">
+        <span>
+            <a asp-action="CreateAW" class="btn-sm animated-button thar-one">Skapa ny AW</a>-->
+                @*btn*@
+                <!--</span>
+    <span>-->
+                @*<form asp-controller="AfterWork" asp-action="ConnectToAW"><input type="hidden" code="c0c3dKIokq" /><input type="submit" class="btn-sm animated-button thar-one" value="Anslut till AW!"/></form>*@
+                @*<a asp-action="ConnectToAW" id="openModal" class="btn-sm animated-button thar-one">Anslut till AW!</a>*@
+                <!--<a id="myModalBtn" class="btn-sm animated-button thar-one">Anslut till AW!</a>
+
+        </span>
+    </div>-->
+
+
+                <div id="carouselExampleIndicators"
+                     class="carousel slide"
+                     data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators"
+                            data-slide-to="0"
+                            class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100 img-fluid mainImg"
+                                 src="@Model[0].GameImgURL"
+                                 alt="First slide" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>@Model[0].GameName</h5>
+                                <p>@Model[0].Description</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100 img-fluid mainImg"
+                                 src="@Model[1].GameImgURL"
+                                 alt="First slide" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>@Model[1].GameName</h5>
+                                <p>@Model[1].Description</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100 img-fluid mainImg"
+                                 src="@Model[2].GameImgURL"
+                                 alt="First slide" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>@Model[2].GameName</h5>
+                                <p>@Model[2].Description</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel_cont">
+                        <a class="carousel-control-prev"
+                           href="#carouselExampleIndicators"
+                           role="button"
+                           data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next"
+                           href="#carouselExampleIndicators"
+                           role="button"
+                           data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="rightside">
+            @await Component.InvokeAsync("HighScore")
+        </div>
+    </div>
+</section>
+
+@*<div class="modal" tabindex="-1" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Skriv in koden till den AW du vill ansluta till</h5>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="AfterWork" asp-action="Connect">
+                    <input type="text" asp-for="@Model[0].Code" />
+                    <input type="submit" class="btn btn-secondary" id="myBtn" data-bs-dismiss="modal" value="Gå till AW" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Anslut till AW</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                Skriv in koden till den AW du vill ansluta till.
+                <form asp-controller="AfterWork" asp-action="Connect">
+                    <input type="text" asp-for="@Model[0].Code" />
+                    <input type="submit" class="btn btn-secondary" id="myBtn" data-bs-dismiss="modal" value="Gå till AW" />
+                </form>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        var btn = document.getElementById("myModalBtn");
+        btn.addEventListener("click", function () {
+            $('#myModal').modal("show");
+            connectToChat();
+        });
+    </script>
+    <script src="/path/to/flickity.pkgd.min.js"></script>
+
+}
+
+@*//TODO Få karusellen att snurra*@
+@*//Loopa igenom gameimgurl[] för att lägga till bilder i karusellen
+    //          <div class="carousel-item">
+    //          <img src="https://picsum.photos/300/200" class="d-block w-100" alt="bild på spel">
+    //          </div>
+    //Det är detta block kod som ska autogenereras av en foreach
+
+*@
+
+@*@foreach (var item in Model)
+    {
+        <div class="carousel-item active">
+            <img src="@item.GameImgURL" class="d-block w-100" alt="@item.GameImgAltText">
+        </div>
+    }*@
+
+@*<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>*@

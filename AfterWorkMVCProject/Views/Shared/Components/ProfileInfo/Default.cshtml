@@ -1,0 +1,32 @@
+﻿@model ProfileInfoVM
+
+
+<section class="profileInfo">
+    <div class="profileTop">
+        <img class="rounded-circle border border-dark profileImg" src="@Model.ProfileImgPath" />
+
+        @*<h4>@Model.Name</h4>*@
+        <input type="hidden" id="userInput" value="@Model.Name" />
+    </div>
+    <hr />
+    <div>
+        <h4 class="center-table" id="hiddenProfileName" style="word-break: break-all; ">@Model.Name</h4>
+
+        <table class="table">
+
+            <tbody>
+                @*<tr id="table-row-profile">
+                    <td>Antal spel:</td>
+                    <td>@Model.GamesPlayed</td>
+                </tr>*@
+                <tr>
+                    <td>Totalpoäng:</td>
+                    <td>@Model.TotalPoints</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+</section>

@@ -1,0 +1,35 @@
+﻿@model HighScoreVM[]
+
+<div class="HighScore">
+    @*<h2>High Score</h2>
+        <table>
+            <tr>
+                <th>
+                    User
+                </th>
+                <th>
+                    Points
+                </th>
+            </tr>
+
+        </table>*@
+    <table class="table">
+        <h4 class="center-table" >Topplista</h4>
+        <thead>
+            <tr>
+                <th scope="col">User</th>
+                <th scope="col">Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.TotalPoints</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

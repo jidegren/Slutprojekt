@@ -1,0 +1,47 @@
+﻿@model LoginVM
+
+<div class="view_content">
+    <div class="center">
+
+        <h3>Logga in</h3>
+
+    <hr />
+        <form asp-controller="AfterWork" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" type="password" class="form-control">
+                <span asp-validation-for="Password"></span>
+            </div>
+            <input type="submit" class="input-as-button" value="Logga in" />
+
+
+        </form>
+        <div asp-validation-summary="All"></div>
+
+
+        @*<form asp-controller="AfterWork" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" />
+                <span asp-validation-for="UserName"></span>
+                <br />
+
+                <label asp-for="Password"></label>
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+                <br />
+                <input type="submit" value="Login" />
+            </form>
+            <div asp-validation-summary="All"></div>*@
+
+
+    </div>
+    <div class="rightside">
+        @await Component.InvokeAsync("HighScore")
+    </div>
+</div>
+

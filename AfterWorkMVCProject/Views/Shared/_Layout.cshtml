@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/buttons.css" />
+    <link rel="stylesheet" href="~/css/buttons_big.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/modalbox.css" />
+    <link rel="stylesheet" href="~/css/gameTable.css" />
+    @*<link rel="stylesheet" href="~/css/style_smallscreen.css" />*@
+
+
+
+    @RenderSection("css", false)
+
+</head>
+<body>
+    <main class="gray_bg">
+        <div class="left_fill">
+        </div>
+
+        <div class="top_and_center">
+            <div class="top_section">
+                <div class="center_top logobox">
+                    
+                        <a class="logo" asp-action="Index">Smutt!</a>
+                        Gör din digitala after work roligare
+                </div>
+
+                <div class="rightsideTop">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-sm animated-button thar-one btn-status" asp-action="Logout">Logga ut</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-sm animated-button thar-one btn-status" asp-action="Login">Logga in</a>
+                        <a class="btn btn-sm animated-button thar-one btn-status" asp-action="Register">Registrera</a>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="right_fill"></div>
+
+    </main>
+
+    <main class="local_nav">
+
+        <div class="left_fill"></div>
+        <div class="top_and_center">
+            <div class="nav_content">
+                <a asp-action="Index">Hem</a> |
+                <a asp-action="CreateAW">Skapa ny AW</a> |
+                <a href="#myModal" id="myModalBtn">Anslut till AW</a> |
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Edit">Redigera profil</a>
+                }
+
+
+            </div>
+        </div>
+        <div class="right_fill"></div>
+
+    </main>
+
+    <main>
+
+        <div class="left_fill">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="leftside">
+                    @await Component.InvokeAsync("ProfileInfo", false)
+                </div>
+            }
+        </div>
+
+        <div class="top_and_center">
+            <div>
+                @*<div class="view_content">*@
+                @RenderBody()
+                @*</div>*@
+            </div>
+        </div>
+
+        <div class="right_fill"></div>
+
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="~/lib/@@microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+
+
+    @RenderSection("scripts", false)
+</body>
+</html>
+

@@ -1,0 +1,86 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Alata&family=Julius+Sans+One&family=Lexend+Deca&family=Mallanna&family=Meera+Inimai&family=NTR&family=Quicksand:wght@500;600;700&family=Roboto&display=swap');
+
+body {
+    background-color: #3078DB;
+}
+
+.profileImg {
+    width: 200px;
+    height: auto;
+}
+
+.logo {
+    max-width: 100%;
+    height: auto;
+}
+
+.main {
+    margin-left: 225px; /* Same as the width of the sidebar */
+    /*padding: 0px 10px;*/
+    /*background-color: blue;*/
+    overflow: hidden;
+    width: 88%;
+    background-color: #E05600;
+}
+
+.leftside {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 225px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding: 10px;
+    background-color: #16378A;
+    color: #DBC41D;
+}
+
+.centerBody {
+    margin-left: 225px; /* Same as the width of the sidebar */
+    padding: 20px;
+    background-color: #3078DB;
+    overflow: hidden;
+    width: 88%;
+    height: 80%;
+    background-color: #16378A;
+}
+
+.center {
+    float: left;
+    width: auto;
+    height: auto;
+    padding: 45px;
+    text-align: center;
+}
+
+.rightside {
+    width: 220px; /* Set the width of the sidebar */
+    float: right;   
+    /*background-color: yellow;*/
+    padding: 10px;
+    height: 800px;
+}
+
+.rightsideTop {
+    width: 220px; /* Set the width of the sidebar */
+    float: right;
+    padding: 20px;
+    text-align: center;
+}
+
+.center-table {
+    text-align: center;
+}
+
+.frontBtns{
+    position: absolute;
+    margin-bottom: 10%;
+}
+
+
+.mainImg {
+    width: 400px;
+    height: 200px;
+    object-fit: cover;
+}

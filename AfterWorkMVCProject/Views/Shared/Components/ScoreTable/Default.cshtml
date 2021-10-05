@@ -1,0 +1,27 @@
+﻿@model ScoreTableVM[] 
+
+<div id="tableUserTotalScore">
+    <h4>Totalpoäng</h4>
+    <p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">UserName</th>
+                    <th scope="col">Score</th>
+                </tr>
+            </thead>
+            <tbody id="userTable">
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.UserName</td>
+                            <td id="@item.UserName-score">@item.Score</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </p>
+</div>
